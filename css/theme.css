@@ -1,0 +1,65 @@
+/* Modern custom scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #121212;
+}
+.light ::-webkit-scrollbar-track {
+    background: #faf9f5;
+}
+::-webkit-scrollbar-thumb {
+    background: #c5a880;
+    border-radius: 3px;
+}
+
+/* Glassmorphism utility */
+.glass {
+    background: rgba(18, 18, 18, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.light .glass {
+    background: rgba(250, 249, 245, 0.7);
+    border: 1px solid rgba(18, 18, 18, 0.05);
+}
+
+/* Ambient light effects */
+.ambient-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(197, 168, 128, 0.05) 0%, rgba(0,0,0,0) 70%);
+    filter: blur(40px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Custom Reveal Animation on Scroll styling */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hover image zoom container scale */
+.zoom-img-container img {
+    transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.zoom-img-container:hover img {
+    transform: scale(1.08);
+}
+
+.reveal-load {
+    animation: portalFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes portalFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

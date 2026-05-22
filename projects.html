@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolios | AURA Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Syne:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        bronze: { DEFAULT: '#c5a880', 500: '#b3844f' },
+                        charcoal: { 900: '#121212', 950: '#0a0a0a', DEFAULT: '#121212' },
+                        warm: { 50: '#fdfdfb', 100: '#faf9f5', 200: '#f5f2eb', 300: '#eae4d8', 400: '#dbd2c2', 500: '#c0b29c' }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['Syne', 'sans-serif'],
+                        editorial: ['"Playfair Display"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body data-page="projects" class="bg-charcoal text-warm-50 dark:bg-charcoal dark:text-warm-50 light:bg-warm-100 light:text-charcoal-900 transition-colors duration-500 font-sans overflow-x-hidden antialiased pt-24">
+
+    <div class="ambient-glow top-[10%] left-[-10%]"></div>
+    <div class="ambient-glow top-[50%] right-[-10%]"></div>
+
+    <div id="custom-cursor" class="fixed w-8 h-8 rounded-full border border-bronze pointer-events-none z-50 transition-transform duration-75 ease-out -translate-x-1/2 -translate-y-1/2 hidden md:block"></div>
+    <div id="custom-cursor-dot" class="fixed w-1.5 h-1.5 bg-bronze rounded-full pointer-events-none z-50 -translate-x-1/2 -translate-y-1/2 hidden md:block"></div>
+
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-40 glass py-4 px-6 lg:px-16 border-b border-white/10">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html#hero" class="flex items-center gap-3 group">
+                <div class="relative w-9 h-9 border border-bronze flex items-center justify-center"><span class="font-display font-semibold text-bronze">A</span></div>
+                <div class="flex flex-col">
+                    <span class="font-display text-xl tracking-[0.2em] font-bold">AURA</span>
+                    <span class="text-[8px] tracking-[0.4em] text-bronze uppercase -mt-1">STUDIO</span>
+                </div>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="index.html" class="text-xs uppercase tracking-[0.2em] font-medium hover:text-bronze transition-colors">Home</a>
+                <a href="projects.html" class="text-xs uppercase tracking-[0.2em] font-medium text-bronze">Projects</a>
+                <a href="add-project.html" class="text-xs uppercase tracking-[0.2em] font-medium hover:text-bronze transition-colors">Add Project</a>
+                <a href="index.html#contact" class="text-xs uppercase tracking-[0.2em] font-medium hover:text-bronze transition-colors">Contact</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button onclick="toggleTheme()" class="p-2.5 rounded-full hover:bg-white/5 border border-transparent hover:border-bronze/30 transition-all" aria-label="Toggle Theme">
+                    <i data-lucide="sun" id="sun-icon" class="w-4 h-4 text-bronze hidden"></i>
+                    <i data-lucide="moon" id="moon-icon" class="w-4 h-4 text-bronze"></i>
+                </button>
+                <a href="add-project.html" class="hidden sm:inline-flex border border-bronze/30 hover:bg-bronze hover:text-charcoal-950 transition-all py-2.5 px-5 rounded-sm text-xs tracking-[0.15em] uppercase font-medium">Add Project</a>
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2" aria-label="Menu"><i data-lucide="menu" id="menu-btn-icon" class="w-6 h-6"></i></button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full glass border-b border-white/10 flex flex-col items-center gap-6 py-8 px-6">
+            <a href="index.html" onclick="toggleMobileMenu()" class="text-sm uppercase tracking-widest hover:text-bronze">Home</a>
+            <a href="projects.html" onclick="toggleMobileMenu()" class="text-sm uppercase tracking-widest text-bronze">Projects</a>
+            <a href="add-project.html" onclick="toggleMobileMenu()" class="text-sm uppercase tracking-widest hover:text-bronze">Add Project</a>
+            <a href="index.html#contact" onclick="toggleMobileMenu()" class="text-sm uppercase tracking-widest hover:text-bronze">Contact</a>
+        </div>
+    </nav>
+
+    <main class="relative py-16 lg:py-24 px-6 lg:px-16">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 reveal active">
+                <div>
+                    <span class="text-xs font-semibold tracking-[0.3em] text-bronze uppercase block mb-3">// Full Archive</span>
+                    <h1 class="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight">
+                        FEATURED <span class="font-editorial italic font-normal text-bronze">Portfolios.</span>
+                    </h1>
+                    <p class="text-sm text-warm-400 font-light mt-4 max-w-lg">Studio selections plus community projects you add from this browser.</p>
+                </div>
+                <a href="add-project.html" class="inline-flex items-center gap-2 px-8 py-3.5 bg-bronze text-charcoal-950 hover:bg-white transition-all text-xs uppercase tracking-[0.2em] font-semibold rounded-sm">
+                    Submit Your Portfolio
+                    <i data-lucide="plus" class="w-4 h-4"></i>
+                </a>
+            </div>
+
+            <div class="flex flex-wrap gap-2 md:gap-4 border-b border-white/10 pb-2 mb-12">
+                <button type="button" onclick="filterProjects('all')" data-filter="all" class="project-filter-btn text-xs tracking-widest uppercase font-semibold text-bronze border-b-2 border-bronze pb-2 px-1 transition-all">All</button>
+                <button type="button" onclick="filterProjects('residential')" data-filter="residential" class="project-filter-btn text-xs tracking-widest uppercase font-semibold text-warm-400 hover:text-bronze border-b-2 border-transparent pb-2 px-1 transition-all">Residential</button>
+                <button type="button" onclick="filterProjects('commercial')" data-filter="commercial" class="project-filter-btn text-xs tracking-widest uppercase font-semibold text-warm-400 hover:text-bronze border-b-2 border-transparent pb-2 px-1 transition-all">Commercial</button>
+                <button type="button" onclick="filterProjects('interior')" data-filter="interior" class="project-filter-btn text-xs tracking-widest uppercase font-semibold text-warm-400 hover:text-bronze border-b-2 border-transparent pb-2 px-1 transition-all">Interior</button>
+                <button type="button" onclick="filterProjects('facade')" data-filter="facade" class="project-filter-btn text-xs tracking-widest uppercase font-semibold text-warm-400 hover:text-bronze border-b-2 border-transparent pb-2 px-1 transition-all">Facade</button>
+            </div>
+
+            <div class="mb-16 reveal">
+                <div class="text-center mb-6">
+                    <span class="text-xs uppercase tracking-[0.2em] font-medium text-bronze">Interactive Renovation Showcase</span>
+                    <h2 class="text-lg font-bold uppercase tracking-widest mt-1">Brutalist Bath Oasis</h2>
+                </div>
+                <div class="relative w-full aspect-[16/9] lg:aspect-[21/9] rounded-lg overflow-hidden border border-white/10 group select-none shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1500&q=80" alt="Before" class="absolute inset-0 w-full h-full object-cover">
+                    <div id="after-image-clip" class="absolute inset-0 w-full h-full" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);">
+                        <img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=1500&q=80" alt="After" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                    <div id="slider-bar" class="absolute inset-y-0 left-1/2 -ml-[1px] w-[2px] bg-bronze z-30 pointer-events-none">
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-bronze text-charcoal-950 flex items-center justify-center border-2 border-white pointer-events-auto">
+                            <i data-lucide="chevrons-left-right" class="w-4 h-4"></i>
+                        </div>
+                    </div>
+                    <input type="range" min="0" max="100" value="50" id="comparison-slider" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-40">
+                </div>
+            </div>
+
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 lg:gap-12"></div>
+        </div>
+    </main>
+
+    <footer class="bg-charcoal-950 text-warm-400 py-12 px-6 lg:px-16 border-t border-white/5">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px]">
+            <span>&copy; 2026 AURA Architecture Studio.</span>
+            <div class="flex gap-6">
+                <a href="index.html" class="hover:text-bronze transition-colors">Home</a>
+                <a href="add-project.html" class="hover:text-bronze transition-colors">Add Project</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="toast" class="fixed bottom-6 right-6 z-50 glass border border-bronze px-6 py-4 rounded-lg shadow-2xl translate-y-12 opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-3">
+        <i data-lucide="info" class="w-5 h-5 text-bronze"></i>
+        <span id="toast-text" class="text-xs tracking-wider uppercase"></span>
+    </div>
+
+    <script src="js/projects.js"></script>
+    <script src="js/core.js"></script>
+</body>
+</html>

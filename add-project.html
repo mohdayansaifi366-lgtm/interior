@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Your Project | AURA Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Syne:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        bronze: { DEFAULT: '#c5a880' },
+                        charcoal: { 900: '#121212', 950: '#0a0a0a', DEFAULT: '#121212' },
+                        warm: { 50: '#fdfdfb', 100: '#faf9f5', 200: '#f5f2eb', 300: '#eae4d8', 400: '#dbd2c2', 500: '#c0b29c' }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['Syne', 'sans-serif'],
+                        editorial: ['"Playfair Display"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body data-page="add-project" class="bg-charcoal text-warm-50 dark:bg-charcoal dark:text-warm-50 light:bg-warm-100 light:text-charcoal-900 transition-colors duration-500 font-sans overflow-x-hidden antialiased pt-24">
+
+    <div class="ambient-glow top-[20%] right-[-10%]"></div>
+
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-40 glass py-4 px-6 lg:px-16 border-b border-white/10">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html#hero" class="flex items-center gap-3">
+                <div class="w-9 h-9 border border-bronze flex items-center justify-center"><span class="font-display font-semibold text-bronze">A</span></div>
+                <span class="font-display text-xl tracking-[0.2em] font-bold">AURA</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="index.html" class="text-xs uppercase tracking-[0.2em] hover:text-bronze transition-colors">Home</a>
+                <a href="projects.html" class="text-xs uppercase tracking-[0.2em] hover:text-bronze transition-colors">Projects</a>
+                <a href="add-project.html" class="text-xs uppercase tracking-[0.2em] text-bronze">Add Project</a>
+            </div>
+            <button onclick="toggleTheme()" class="p-2.5 rounded-full hover:bg-white/5 border border-transparent hover:border-bronze/30" aria-label="Toggle Theme">
+                <i data-lucide="sun" id="sun-icon" class="w-4 h-4 text-bronze hidden"></i>
+                <i data-lucide="moon" id="moon-icon" class="w-4 h-4 text-bronze"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="relative py-16 lg:py-24 px-6 lg:px-16">
+        <div class="max-w-3xl mx-auto reveal active">
+            <span class="text-xs font-semibold tracking-[0.3em] text-bronze uppercase block mb-3">// Community Portfolio</span>
+            <h1 class="font-display text-3xl sm:text-4xl font-extrabold tracking-tight mb-2">
+                ADD YOUR <span class="font-editorial italic font-normal text-bronze">Project.</span>
+            </h1>
+            <p class="text-sm text-warm-400 font-light mb-10">Projects save in this browser. Use an image URL (Unsplash works). Optional GLB link enables 3D on the detail page.</p>
+
+            <form id="addProjectForm" onsubmit="handleAddProjectSubmit(event)" class="glass p-8 lg:p-10 rounded-lg border border-white/10 space-y-5">
+                <div id="form-status" class="hidden p-3.5 rounded-sm border text-[11px] tracking-wide uppercase"></div>
+
+                <div>
+                    <label for="proj-title" class="block text-[9px] uppercase tracking-[0.2em] text-warm-400 mb-2">Project Title *</label>
+                    <input type="text" id="proj-title" required placeholder="The Glass Pavilion"
+                           class="w-full bg-white/5 border border-white/10 rounded-sm py-3 px-4 text-xs focus:outline-none focus:border-bronze">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                        <label for="proj-category" class="block text-[9px] uppercase tracking-[0.2em] text-warm-400 mb-2">Category *</label>
+                        <select id="proj-category" required class="w-full bg-white/5 border border-white/10 rounded-sm py-3 px-4 text-xs focus:outline-none focus:border-bronze">
+                            <option value="residential">Residential</option>
+                            <option value="commercial">Commercial</option>
+                            <option value="interior">Interior</option>
+                            <option value="facade">Facade</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="proj-location" class="block text-[9px] uppercase tracking-[0.2em] text-warm-400 mb-2">Location *</label>
+                        <input type="text" id="proj-location" required placeholder="Lahore, Pakistan"
+                               class="w-full bg-white/5 border border-white/10 rounded-sm py-3 px-4 text-xs focus:outline-none focus:border-bronze">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="proj-desc" class="block text-[9px] uppercase tracking-[0.2em] text-warm-400 mb-2">Description *</label>
+                    <textarea id="proj-desc" required rows="4" placeholder="Describe materials, concept, and spatial intent..."
+                              class="w-full bg-white/5 border border-white/10 rounded-sm py-3 px-4 text-xs focus:outline-none focus:border-bronze resize-y"></textarea>
+                </div>
+
+                <div>
+                    <label for="proj-image" class="block text-[9px] uppercase tracking-[0.2em] text-warm-400 mb-2">Cover Image URL *</label>
+                    <input type="url" id="proj-image" required placeholder="https://images.unsplash.com/photo-..."
+                           class="w-full bg-white/5 border border-white/10 rounded-sm py-3 px-4 text-xs focus:outline-none focus:border-bronze">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                    <div>
+                        <label for="proj-area" class="block text-[9px] uppercase tracking-[0.2em] text-warm-400 mb-2">Total Area</label>
+                        <input type="text" id="proj-area" placeholder="3,200 sqft"
+                               class="w-full bg-white/5 border border-white/10 rounded-sm py-3 px-4 text-xs focus:outline-none focus:border-bronze">
+                    </div>
+                    <div>
+                        <label for="proj-energy" class="block text-[9px] uppercase tracking-[0.2em] text-warm-400 mb-2">Sustainability</label>
+                        <input type="text" id="proj-energy" placeholder="LEED Gold"
+                               class="w-full bg-white/5 border border-white/10 rounded-sm py-3 px-4 text-xs focus:outline-none focus:border-bronze">
+                    </div>
+                    <div>
+                        <label for="proj-duration" class="block text-[9px] uppercase tracking-[0.2em] text-warm-400 mb-2">Duration</label>
+                        <input type="text" id="proj-duration" placeholder="12 Months"
+                               class="w-full bg-white/5 border border-white/10 rounded-sm py-3 px-4 text-xs focus:outline-none focus:border-bronze">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="proj-model" class="block text-[9px] uppercase tracking-[0.2em] text-bronze mb-2">3D Model URL (.glb) — optional</label>
+                    <input type="url" id="proj-model" placeholder="https://example.com/model.glb"
+                           class="w-full bg-white/5 border border-white/10 rounded-sm py-3 px-4 text-xs focus:outline-none focus:border-bronze">
+                    <p class="text-[10px] text-warm-400 mt-2 font-light">Without a model, a bronze wireframe architectural preview is shown.</p>
+                </div>
+
+                <button type="submit" class="w-full py-3.5 bg-bronze text-charcoal-950 hover:bg-white transition-all font-bold uppercase tracking-[0.2em] text-[10px] rounded-sm flex items-center justify-center gap-2">
+                    Publish to Portfolio
+                    <i data-lucide="box" class="w-4 h-4"></i>
+                </button>
+            </form>
+
+            <p class="text-center mt-8">
+                <a href="projects.html" class="text-xs uppercase tracking-widest text-bronze hover:text-white transition-colors">← Back to all projects</a>
+            </p>
+        </div>
+    </main>
+
+    <div id="toast" class="fixed bottom-6 right-6 z-50 glass border border-bronze px-6 py-4 rounded-lg shadow-2xl translate-y-12 opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-3">
+        <span id="toast-text" class="text-xs tracking-wider uppercase"></span>
+    </div>
+
+    <script src="js/projects.js"></script>
+    <script src="js/core.js"></script>
+</body>
+</html>

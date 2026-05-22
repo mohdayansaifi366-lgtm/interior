@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project | AURA Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Syne:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        bronze: { DEFAULT: '#c5a880' },
+                        charcoal: { 900: '#121212', 950: '#0a0a0a', DEFAULT: '#121212' },
+                        warm: { 50: '#fdfdfb', 100: '#faf9f5', 200: '#f5f2eb', 300: '#eae4d8', 400: '#dbd2c2', 500: '#c0b29c' }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['Syne', 'sans-serif'],
+                        editorial: ['"Playfair Display"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body data-page="project-detail" class="bg-charcoal text-warm-50 dark:bg-charcoal dark:text-warm-50 light:bg-warm-100 light:text-charcoal-900 transition-colors duration-500 font-sans overflow-x-hidden antialiased pt-24">
+
+    <div class="ambient-glow top-[15%] left-[-5%]"></div>
+    <div class="ambient-glow top-[60%] right-[-10%]"></div>
+
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-40 glass py-4 px-6 lg:px-16 border-b border-white/10">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html#hero" class="flex items-center gap-3">
+                <div class="w-9 h-9 border border-bronze flex items-center justify-center"><span class="font-display font-semibold text-bronze">A</span></div>
+                <span class="font-display text-xl tracking-[0.2em] font-bold">AURA</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="projects.html" class="text-xs uppercase tracking-[0.2em] hover:text-bronze transition-colors">← All Projects</a>
+                <a href="add-project.html" class="text-xs uppercase tracking-[0.2em] hover:text-bronze transition-colors">Add Project</a>
+            </div>
+            <button onclick="toggleTheme()" class="p-2.5 rounded-full hover:bg-white/5" aria-label="Toggle Theme">
+                <i data-lucide="sun" id="sun-icon" class="w-4 h-4 text-bronze hidden"></i>
+                <i data-lucide="moon" id="moon-icon" class="w-4 h-4 text-bronze"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="relative py-12 lg:py-20 px-6 lg:px-16">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-8 reveal active">
+                <a href="projects.html" class="text-xs uppercase tracking-widest text-bronze hover:text-white transition-colors inline-flex items-center gap-2">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to portfolios
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 reveal active">
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="relative aspect-[3/2] overflow-hidden rounded-md shadow-2xl">
+                        <img id="detail-hero-img" src="" alt="Project" class="w-full h-full object-cover">
+                    </div>
+
+                    <div>
+                        <span class="text-xs uppercase tracking-[0.2em] text-bronze font-semibold block mb-2">3D Architectural Preview</span>
+                        <div class="three-viewer-wrap glass">
+                            <canvas id="project-3d-canvas"></canvas>
+                            <span class="three-viewer-hint glass text-[9px] uppercase tracking-widest px-3 py-1.5 text-warm-400">Drag to orbit · Scroll to zoom</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="p-4 glass rounded-sm">
+                            <span class="block text-[8px] uppercase tracking-wider text-warm-400">Total Area</span>
+                            <span id="detail-spec-area" class="font-bold text-sm text-bronze">—</span>
+                        </div>
+                        <div class="p-4 glass rounded-sm">
+                            <span class="block text-[8px] uppercase tracking-wider text-warm-400">Sustainability</span>
+                            <span id="detail-spec-energy" class="font-bold text-sm text-bronze">—</span>
+                        </div>
+                        <div class="p-4 glass rounded-sm">
+                            <span class="block text-[8px] uppercase tracking-wider text-warm-400">Construction</span>
+                            <span id="detail-spec-duration" class="font-bold text-sm text-bronze">—</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 flex flex-col">
+                    <span id="detail-badge" class="hidden text-[9px] uppercase tracking-widest font-bold text-bronze border border-bronze/40 px-3 py-1 rounded-full w-fit mb-4">Community Portfolio</span>
+                    <span id="detail-cat" class="text-xs tracking-widest uppercase font-semibold text-bronze">Category</span>
+                    <h1 id="detail-title" class="font-display text-2xl lg:text-4xl font-extrabold tracking-tight mt-2 mb-2">Project Title</h1>
+                    <p id="detail-location" class="text-xs text-warm-400 uppercase tracking-widest mb-6"></p>
+                    <p id="detail-desc" class="text-warm-300 light:text-charcoal-700 leading-relaxed font-light text-sm mb-8 flex-grow"></p>
+
+                    <div class="space-y-4 border-t border-white/10 pt-6 mb-8">
+                        <div class="flex items-start gap-3">
+                            <div class="p-1 rounded-full bg-bronze/10 text-bronze"><i data-lucide="check" class="w-3.5 h-3.5"></i></div>
+                            <div>
+                                <h5 class="text-xs uppercase font-bold">Custom Lighting Integration</h5>
+                                <p class="text-[11px] text-warm-400">Warm linear lights hidden in wall pockets.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="p-1 rounded-full bg-bronze/10 text-bronze"><i data-lucide="check" class="w-3.5 h-3.5"></i></div>
+                            <div>
+                                <h5 class="text-xs uppercase font-bold">High-End Materials</h5>
+                                <p class="text-[11px] text-warm-400">Travertine, raw concrete, and smoked oak detailing.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="index.html#contact" class="w-full text-center block py-3.5 bg-bronze text-charcoal-950 hover:bg-white transition-all font-semibold uppercase tracking-widest text-xs rounded-sm">Inquire About Similar Design</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-charcoal-950 text-warm-400 py-10 px-6 text-center text-[10px] border-t border-white/5">
+        &copy; 2026 AURA Architecture Studio
+    </footer>
+
+    <script src="js/projects.js"></script>
+    <script src="js/core.js"></script>
+    <script type="module" src="js/three-viewer.js"></script>
+</body>
+</html>
